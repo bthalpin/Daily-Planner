@@ -1,5 +1,5 @@
 const dateEl = $('#currentDay');
-const mainEl = $('.calendar');
+const mainEl = $('.planner');
 
 
 // Initial time on page load
@@ -7,7 +7,7 @@ dateEl.text(moment().format('MMMM Do YYYY, h:mm:ss a'))
 
 const hours = ['9AM','10AM','11AM','12PM','1PM','2PM','3PM','4PM','5PM']
 const twentyFourHous = [9,10,11,12,13,14,15,16,17]
-let calendarContent = {'9AM':'',
+let plannerContent = {'9AM':'',
                         '10AM':'',
                         '11AM':'',
                         '12PM':'',
@@ -21,29 +21,29 @@ let calendarContent = {'9AM':'',
 
 
 
-function loadCalendarData() {
-    const rawData = localStorage.getItem('calendarContent')
+function loadPlannerData() {
+    const rawData = localStorage.getItem('plannerContent')
     const loadedData = JSON.parse(rawData)
     if (loadedData){
-        calendarContent = loadedData
+        plannerContent = loadedData
     }
 }
 
-function saveCalendar() {
-    const calendarNote = $(this).prev()[0].value;
-    const calendarTime = $(this).prev().prev()[0].textContent;
-    calendarContent[calendarTime] = calendarNote;
-    localStorage.setItem('calendarContent',JSON.stringify(calendarContent))
+function savePlanner() {
+    const plannerNote = $(this).prev()[0].value;
+    const plannerTime = $(this).prev().prev()[0].textContent;
+    plannerContent[plannerTime] = plannerNote;
+    localStorage.setItem('plannerContent',JSON.stringify(plannerContent))
 }
 
-function createCalendar() {
+function createPlanner() {
     $.each(twentyFourHous,function(index,val){
 
-        // Creates main row to append the calendar information for each hour
-        let calendarRow = $('<div>')
-        calendarRow.addClass('row m-1')
+        // Creates main row to append the planner information for each hour
+        let plannerRow = $('<div>')
+        plannerRow.addClass('row m-1')
 
-        // Creat information for the calendar
+        // Creates information for the planner
         let hour = $('<div>').text(hours[index])
         let notes = $('<textarea>')
         let button = $('<button>')
@@ -52,8 +52,8 @@ function createCalendar() {
         icon.html('&#128190')
         button.append(icon)
 
-        // Displays the text from the calendarContent object if any is there
-        notes.text(calendarContent[hours[index]])
+        // Displays the text from the plannerContent object if any is there
+        notes.text(plannerContent[hours[index]])
 
         hour.addClass('col-2 col-md-1 d-flex justify-content-center align-items-center border border-dark border-left-0')
         notes.addClass('col-8 col-md-10 notes')
@@ -71,8 +71,8 @@ function createCalendar() {
             notes.addClass('past')
         }
 
-        calendarRow.append(hour,notes,button)
-        mainEl.append(calendarRow)
+        plannerRow.append(hour,notes,button)
+        mainEl.append(plannerRow)
     })
     
 }
@@ -87,9 +87,9 @@ function updateTime() {
 
 
 function init() {
-    mainEl.on('click','.saveBtn',saveCalendar)
-    loadCalendarData()
-    createCalendar()
+    mainEl.on('click','.saveBtn',savePlanner)
+    loadPlannerData()
+    createPlanner()
     updateTime()
 }
 
