@@ -27,7 +27,6 @@ function loadCalendarData() {
     if (loadedData){
         calendarContent = loadedData
     }
-    console.log(calendarContent)
 }
 
 function saveCalendar() {
@@ -40,11 +39,11 @@ function saveCalendar() {
 function createCalendar() {
     $.each(twentyFourHous,function(index,val){
 
-        // 
+        // Creates main row to append the calendar information for each hour
         let calendarRow = $('<div>')
         calendarRow.addClass('row m-1')
 
-        // 
+        // Creat information for the calendar
         let hour = $('<div>').text(hours[index])
         let notes = $('<textarea>')
         let button = $('<button>')
@@ -53,14 +52,14 @@ function createCalendar() {
         icon.html('&#128190')
         button.append(icon)
 
-        // 
+        // Displays the text from the calendarContent object if any is there
         notes.text(calendarContent[hours[index]])
 
         hour.addClass('col-2 col-md-1 d-flex justify-content-center align-items-center border border-dark border-left-0')
         notes.addClass('col-8 col-md-10 notes')
         button.addClass('col-2 col-md-1 saveBtn')
         
-        // 
+        // Changes the colors for the hour blocks depending on if it is present, past, or future
         let currentHour = moment().hour()
         if (currentHour === val){
             notes.addClass('present')
