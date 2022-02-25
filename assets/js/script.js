@@ -6,7 +6,7 @@ const mainEl = $('.planner');
 dateEl.text(moment().format('MMMM Do YYYY, h:mm:ss a'))
 
 const hours = ['9AM','10AM','11AM','12PM','1PM','2PM','3PM','4PM','5PM']
-const twentyFourHous = [9,10,11,12,13,14,15,16,17]
+const twentyFourHours = [9,10,11,12,13,14,15,16,17]
 let plannerContent = {'9AM':'',
                         '10AM':'',
                         '11AM':'',
@@ -37,7 +37,7 @@ function savePlanner() {
 }
 
 function createPlanner() {
-    $.each(twentyFourHous,function(index,val){
+    $.each(twentyFourHours,function(index,val){
 
         // Creates main row to append the planner information for each hour
         let plannerRow = $('<div>')
