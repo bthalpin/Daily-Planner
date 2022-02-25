@@ -11,4 +11,4 @@ The Daily Planner can be  located [here](https://bthalpin.github.io/Daily-Planne
 ## Media
 The following image shows what the Daily Planner looks like: 
 
-![](./assets/images/main-page.png)
+![An image of the daily planner with horizontal rows for each hour](./assets/images/main-page.png)
